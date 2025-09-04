@@ -7,13 +7,6 @@ import (
 	"strings"
 )
 
-// TODO:
-// 1. change it into bahttext.Words()
-// 2. change it into bahttext.WordsFromString()
-// 3. change the repo to bahttext
-// 4. remove tags v1.0.0
-// 5. re tag it
-
 var (
 	unitWords  = []string{"", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"}
 	unitPlaces = []string{"", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน"}
