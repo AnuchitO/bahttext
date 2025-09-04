@@ -1,10 +1,14 @@
 # THB-to-Text: Thai Baht to Word Conversion Library
 
-## 🇹🇭 THB-to-Text (Production Ready)
+[![codecov](https://codecov.io/github/AnuchitO/bahttext/graph/badge.svg?token=7Q7FAJNUS1)](https://codecov.io/github/AnuchitO/bahttext) [![Go](https://github.com/anuchito/bahttext/actions/workflows/ci.yml/badge.svg)](https://github.com/anuchito/bahttext/actions/workflows/ci.yml) [![Go Reference](https://pkg.go.dev/badge/github.com/anuchito/bahttext.svg)](https://pkg.go.dev/github.com/anuchito/bahttext)
+
+<img src=".badges/trustworthy.png" alt="Trustworthy" height="140"> <img src=".badges/production-proved.png" alt="Trustworthy" height="140">
+
+## 🇹🇭 THB-to-Text
 
 **THB-to-Text** คือไลบรารีที่สร้างขึ้นเพื่อแก้ปัญหาการแปลงตัวเลขจำนวนเงินบาทไทยให้เป็นข้อความภาษาไทยอย่างถูกต้องและแม่นยำ โดยเลียนแบบฟังก์ชัน `BAHTTEXT()` ของ [Microsoft Excel](https://support.microsoft.com/en-us/office/bahttext-function-5ba4d0b4-abd3-4325-8d22-7a92d59aab9c) ซึ่งเป็นที่คุ้นเคยในวงการบัญชีและการเงิน
 
-โค้ดที่มีคุณภาพสูง ทำงานได้อย่างรวดเร็ว ปลอดภัย และใช้งานง่ายที่สุดเท่าที่จะเป็นไปได้ สามารถนำไปใช้ได้จริงในระดับ**โปรดักชัน**ได้จริง
+โค้ดที่มีคุณภาพสูง ทำงานได้อย่างรวดเร็ว ปลอดภัย และใช้งานง่ายที่สุดเท่าที่จะเป็นไปได้ สามารถนำไปใช้ได้จริงในระดับ**โปรดักชัน**ได้จริง  **(Production Ready)**
 
 
 ### ตารางตัวอย่างการใช้งาน / Examples Table
@@ -33,7 +37,7 @@
 | `100` | `bahttext.Words(100)` | หนึ่งร้อยบาทถ้วน |
 | `101` | `bahttext.Words(101)` | หนึ่งร้อยเอ็ดบาทถ้วน |
 | `111` | `bahttext.Words(111)` | หนึ่งร้อยสิบเอ็ดบาทถ้วน |
-| `120` | `bahttext.Words(120)` | หนึ่งร้อยยี่สิบบาทถ้วน |
+| `130` | `bahttext.Words(120)` | หนึ่งร้อยยี่สิบบาทถ้วน |
 | `221` | `bahttext.Words(221)` | สองร้อยยี่สิบเอ็ดบาทถ้วน |
 | `505` | `bahttext.Words(505)` | ห้าร้อยห้าบาทถ้วน |
 | `999` | `bahttext.Words(999)` | เก้าร้อยเก้าสิบเก้าบาทถ้วน |
@@ -162,7 +166,7 @@ fmt.Println(bahttext.WordsFromString(money))
 ```
 -----
 
-## 🇺🇸 THB-to-Text (Production Ready)
+## 🇺🇸 THB-to-Text
 
 **THB-to-Text** is a library created to solve the problem of converting Thai Baht currency numbers into Thai text accurately and precisely. It mimics the `BAHTTEXT()` function from [Microsoft Excel](https://support.microsoft.com/en-us/office/bahttext-function-5ba4d0b4-abd3-4325-8d22-7a92d59aab9c), which is familiar in accounting and finance.
 
