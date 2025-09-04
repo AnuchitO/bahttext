@@ -3,6 +3,7 @@ package baht
 import (
 	"fmt"
 	"math"
+	"strconv"
 	"strings"
 )
 
@@ -110,4 +111,45 @@ func moneyToThaiWords(m uint64) string {
 	}
 
 	return result.String()
+}
+
+// TextFromString converts a string amount into its Thai word representation.
+// It parses the string as a float64 and then converts it to Thai words.
+// Returns the converted string and an error if the string cannot be parsed.
+//
+// Example usage:
+//
+//	text, err := baht.TextFromString("1234.56")
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Println(text) // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+//
+// The function supports the same number formats as Text():
+//   - Whole numbers: TextFromString("1000") -> "หนึ่งพันบาทถ้วน", nil
+//   - Decimals (satang): TextFromString("10.50") -> "สิบบาทห้าสิบสตางค์", nil
+//   - Large numbers: TextFromString("1000000") -> "หนึ่งล้านบาทถ้วน", nil
+//   - Negative numbers: TextFromString("-100") -> "ลบหนึ่งร้อยบาทถ้วน", nil
+func TextFromString(money string) (string, error) {
+	amount, err := strconv.ParseFloat(strings.TrimSpace(money), 64)
+	if err != nil {
+		return "", fmt.Errorf("invalid number format: %s", money)
+	}
+	return Text(amount), nil
+}
+
+// MustTextFromString is like TextFromString but panics if the string cannot be parsed.
+// Use this when you are certain the string is a valid number.
+//
+// Example usage:
+//
+//	money := fmt.Sprintf("%.2f", 1234.56)
+//	text := baht.MustTextFromString(money)
+//	fmt.Println(text) // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+func MustTextFromString(money string) string {
+	text, err := TextFromString(money)
+	if err != nil {
+		panic(err)
+	}
+	return text
 }

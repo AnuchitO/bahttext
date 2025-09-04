@@ -86,3 +86,60 @@ func ExampleText_edgeCases() {
 	// 111 -> หนึ่งร้อยสิบเอ็ดบาทถ้วน
 	// 1001 -> หนึ่งพันเอ็ดบาทถ้วน
 }
+
+// ExampleTextFromString demonstrates basic usage of the TextFromString function
+func ExampleTextFromString() {
+	text, err := baht.TextFromString("1234.56")
+	if err != nil {
+		fmt.Printf("Error: %v\n", err)
+		return
+	}
+	fmt.Println(text)
+	// Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+}
+
+// ExampleTextFromString_various demonstrates converting various string amounts
+func ExampleTextFromString_various() {
+	amounts := []string{"0", "1000", "1234.56", "-100.50"}
+
+	for _, amount := range amounts {
+		text, err := baht.TextFromString(amount)
+		if err != nil {
+			fmt.Printf("%s -> Error: %v\n", amount, err)
+			continue
+		}
+		fmt.Printf("%s -> %s\n", amount, text)
+	}
+	// Output:
+	// 0 -> ศูนย์บาทถ้วน
+	// 1000 -> หนึ่งพันบาทถ้วน
+	// 1234.56 -> หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+	// -100.50 -> ลบหนึ่งร้อยบาทห้าสิบสตางค์
+}
+
+// ExampleTextFromString_errorHandling demonstrates error handling
+func ExampleTextFromString_errorHandling() {
+	invalidAmounts := []string{"abc", "12.34.56", "", "12@34"}
+
+	for _, amount := range invalidAmounts {
+		text, err := baht.TextFromString(amount)
+		if err != nil {
+			fmt.Printf("%q -> Error: invalid input\n", amount)
+		} else {
+			fmt.Printf("%q -> %s\n", amount, text)
+		}
+	}
+	// Output:
+	// "abc" -> Error: invalid input
+	// "12.34.56" -> Error: invalid input
+	// "" -> Error: invalid input
+	// "12@34" -> Error: invalid input
+}
+
+// ExampleMustTextFromString demonstrates basic usage of the MustTextFromString function
+func ExampleMustTextFromString() {
+	money := fmt.Sprintf("%.2f", 1234.56)
+	text := baht.MustTextFromString(money)
+	fmt.Println(text)
+	// Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+}

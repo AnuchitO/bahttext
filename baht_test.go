@@ -139,3 +139,82 @@ func TestBahtText(t *testing.T) {
 		})
 	}
 }
+
+func TestTextFromString(t *testing.T) {
+	tests := []struct {
+		name    string
+		input   string
+		want    string
+		wantErr bool
+	}{
+		// Valid string inputs
+		{"zero-string", "0", "ศูนย์บาทถ้วน", false},
+		{"one-string", "1", "หนึ่งบาทถ้วน", false},
+		{"decimal-string", "1234.56", "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์", false},
+		{"negative-string", "-100", "ลบหนึ่งร้อยบาทถ้วน", false},
+		{"large-number-string", "1000000", "หนึ่งล้านบาทถ้วน", false},
+		{"with-spaces", " 123.45 ", "หนึ่งร้อยยี่สิบสามบาทสี่สิบห้าสตางค์", false},
+		{"scientific-notation", "1e3", "หนึ่งพันบาทถ้วน", false},
+		
+		// Invalid string inputs
+		{"empty-string", "", "", true},
+		{"invalid-text", "abc", "", true},
+		{"mixed-text", "123abc", "", true},
+		{"multiple-dots", "12.34.56", "", true},
+		{"special-chars", "12@34", "", true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result, err := TextFromString(tt.input)
+			
+			if tt.wantErr {
+				if err == nil {
+					t.Errorf("TextFromString(%q) expected error, got nil", tt.input)
+				}
+				return
+			}
+			
+			if err != nil {
+				t.Errorf("TextFromString(%q) unexpected error: %v", tt.input, err)
+				return
+			}
+			
+			if result != tt.want {
+				t.Errorf("TextFromString(%q) = %s, want %s", tt.input, result, tt.want)
+			}
+		})
+	}
+}
+
+func TestMustTextFromString(t *testing.T) {
+	// Test valid inputs
+	validTests := []struct {
+		name  string
+		input string
+		want  string
+	}{
+		{"valid-integer", "1234", "หนึ่งพันสองร้อยสามสิบสี่บาทถ้วน"},
+		{"valid-decimal", "1234.56", "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์"},
+		{"valid-negative", "-100", "ลบหนึ่งร้อยบาทถ้วน"},
+	}
+
+	for _, tt := range validTests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := MustTextFromString(tt.input)
+			if result != tt.want {
+				t.Errorf("MustTextFromString(%q) = %s, want %s", tt.input, result, tt.want)
+			}
+		})
+	}
+
+	// Test panic behavior
+	t.Run("panic-on-invalid", func(t *testing.T) {
+		defer func() {
+			if r := recover(); r == nil {
+				t.Errorf("MustTextFromString should panic on invalid input")
+			}
+		}()
+		MustTextFromString("invalid")
+	})
+}
