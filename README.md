@@ -13,83 +13,83 @@
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `0` | `baht.Text(0)` | ศูนย์บาทถ้วน |
-| `1` | `baht.Text(1)` | หนึ่งบาทถ้วน |
-| `2` | `baht.Text(2)` | สองบาทถ้วน |
-| `5` | `baht.Text(5)` | ห้าบาทถ้วน |
-| `9` | `baht.Text(9)` | เก้าบาทถ้วน |
-| `10` | `baht.Text(10)` | สิบบาทถ้วน |
-| `11` | `baht.Text(11)` | สิบเอ็ดบาทถ้วน |
-| `20` | `baht.Text(20)` | ยี่สิบบาทถ้วน |
-| `21` | `baht.Text(21)` | ยี่สิบเอ็ดบาทถ้วน |
-| `31` | `baht.Text(31)` | สามสิบเอ็ดบาทถ้วน |
-| `55` | `baht.Text(55)` | ห้าสิบห้าบาทถ้วน |
-| `99` | `baht.Text(99)` | เก้าสิบเก้าบาทถ้วน |
+| `0` | `bahttext.Words(0)` | ศูนย์บาทถ้วน |
+| `1` | `bahttext.Words(1)` | หนึ่งบาทถ้วน |
+| `2` | `bahttext.Words(2)` | สองบาทถ้วน |
+| `5` | `bahttext.Words(5)` | ห้าบาทถ้วน |
+| `9` | `bahttext.Words(9)` | เก้าบาทถ้วน |
+| `10` | `bahttext.Words(10)` | สิบบาทถ้วน |
+| `11` | `bahttext.Words(11)` | สิบเอ็ดบาทถ้วน |
+| `20` | `bahttext.Words(20)` | ยี่สิบบาทถ้วน |
+| `21` | `bahttext.Words(21)` | ยี่สิบเอ็ดบาทถ้วน |
+| `31` | `bahttext.Words(31)` | สามสิบเอ็ดบาทถ้วน |
+| `55` | `bahttext.Words(55)` | ห้าสิบห้าบาทถ้วน |
+| `99` | `bahttext.Words(99)` | เก้าสิบเก้าบาทถ้วน |
 
 #### Hundreds (ร้อย)
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `100` | `baht.Text(100)` | หนึ่งร้อยบาทถ้วน |
-| `101` | `baht.Text(101)` | หนึ่งร้อยเอ็ดบาทถ้วน |
-| `111` | `baht.Text(111)` | หนึ่งร้อยสิบเอ็ดบาทถ้วน |
-| `120` | `baht.Text(120)` | หนึ่งร้อยยี่สิบบาทถ้วน |
-| `221` | `baht.Text(221)` | สองร้อยยี่สิบเอ็ดบาทถ้วน |
-| `505` | `baht.Text(505)` | ห้าร้อยห้าบาทถ้วน |
-| `999` | `baht.Text(999)` | เก้าร้อยเก้าสิบเก้าบาทถ้วน |
+| `100` | `bahttext.Words(100)` | หนึ่งร้อยบาทถ้วน |
+| `101` | `bahttext.Words(101)` | หนึ่งร้อยเอ็ดบาทถ้วน |
+| `111` | `bahttext.Words(111)` | หนึ่งร้อยสิบเอ็ดบาทถ้วน |
+| `120` | `bahttext.Words(120)` | หนึ่งร้อยยี่สิบบาทถ้วน |
+| `221` | `bahttext.Words(221)` | สองร้อยยี่สิบเอ็ดบาทถ้วน |
+| `505` | `bahttext.Words(505)` | ห้าร้อยห้าบาทถ้วน |
+| `999` | `bahttext.Words(999)` | เก้าร้อยเก้าสิบเก้าบาทถ้วน |
 
 #### Thousands (พัน)
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `1000` | `baht.Text(1000)` | หนึ่งพันบาทถ้วน |
-| `1001` | `baht.Text(1001)` | หนึ่งพันเอ็ดบาทถ้วน |
-| `1111` | `baht.Text(1111)` | หนึ่งพันหนึ่งร้อยสิบเอ็ดบาทถ้วน |
-| `2500` | `baht.Text(2500)` | สองพันห้าร้อยบาทถ้วน |
-| `9999` | `baht.Text(9999)` | เก้าพันเก้าร้อยเก้าสิบเก้าบาทถ้วน |
+| `1000` | `bahttext.Words(1000)` | หนึ่งพันบาทถ้วน |
+| `1001` | `bahttext.Words(1001)` | หนึ่งพันเอ็ดบาทถ้วน |
+| `1111` | `bahttext.Words(1111)` | หนึ่งพันหนึ่งร้อยสิบเอ็ดบาทถ้วน |
+| `2500` | `bahttext.Words(2500)` | สองพันห้าร้อยบาทถ้วน |
+| `9999` | `bahttext.Words(9999)` | เก้าพันเก้าร้อยเก้าสิบเก้าบาทถ้วน |
 
 #### Large Numbers (จำนวนใหญ่)
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `10000` | `baht.Text(10000)` | หนึ่งหมื่นบาทถ้วน |
-| `100000` | `baht.Text(100000)` | หนึ่งแสนบาทถ้วน |
-| `123456` | `baht.Text(123456)` | หนึ่งแสนสองหมื่นสามพันสี่ร้อยห้าสิบหกบาทถ้วน |
-| `1000000` | `baht.Text(1000000)` | หนึ่งล้านบาทถ้วน |
-| `10000000` | `baht.Text(10000000)` | สิบล้านบาทถ้วน |
-| `100000000` | `baht.Text(100000000)` | หนึ่งร้อยล้านบาทถ้วน |
-| `1000000000` | `baht.Text(1000000000)` | หนึ่งพันล้านบาทถ้วน |
-| `1000000000000` | `baht.Text(1000000000000)` | หนึ่งล้านล้านบาทถ้วน |
+| `10000` | `bahttext.Words(10000)` | หนึ่งหมื่นบาทถ้วน |
+| `100000` | `bahttext.Words(100000)` | หนึ่งแสนบาทถ้วน |
+| `123456` | `bahttext.Words(123456)` | หนึ่งแสนสองหมื่นสามพันสี่ร้อยห้าสิบหกบาทถ้วน |
+| `1000000` | `bahttext.Words(1000000)` | หนึ่งล้านบาทถ้วน |
+| `10000000` | `bahttext.Words(10000000)` | สิบล้านบาทถ้วน |
+| `100000000` | `bahttext.Words(100000000)` | หนึ่งร้อยล้านบาทถ้วน |
+| `1000000000` | `bahttext.Words(1000000000)` | หนึ่งพันล้านบาทถ้วน |
+| `1000000000000` | `bahttext.Words(1000000000000)` | หนึ่งล้านล้านบาทถ้วน |
 
 #### Decimals (ทศนิยม - สตางค์)
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `1.01` | `baht.Text(1.01)` | หนึ่งบาทหนึ่งสตางค์ |
-| `1.25` | `baht.Text(1.25)` | หนึ่งบาทยี่สิบห้าสตางค์ |
-| `5.50` | `baht.Text(5.50)` | ห้าบาทห้าสิบสตางค์ |
-| `10.50` | `baht.Text(10.50)` | สิบบาทห้าสิบสตางค์ |
-| `100.75` | `baht.Text(100.75)` | หนึ่งร้อยบาทเจ็ดสิบห้าสตางค์ |
-| `1234.56` | `baht.Text(1234.56)` | หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์ |
-| `9012.34` | `baht.Text(9012.34)` | เก้าพันสิบสองบาทสามสิบสี่สตางค์ |
+| `1.01` | `bahttext.Words(1.01)` | หนึ่งบาทหนึ่งสตางค์ |
+| `1.25` | `bahttext.Words(1.25)` | หนึ่งบาทยี่สิบห้าสตางค์ |
+| `5.50` | `bahttext.Words(5.50)` | ห้าบาทห้าสิบสตางค์ |
+| `10.50` | `bahttext.Words(10.50)` | สิบบาทห้าสิบสตางค์ |
+| `100.75` | `bahttext.Words(100.75)` | หนึ่งร้อยบาทเจ็ดสิบห้าสตางค์ |
+| `1234.56` | `bahttext.Words(1234.56)` | หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์ |
+| `9012.34` | `bahttext.Words(9012.34)` | เก้าพันสิบสองบาทสามสิบสี่สตางค์ |
 
 #### Special Cases (กรณีพิเศษ)
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `-100` | `baht.Text(-100)` | ลบหนึ่งร้อยบาทถ้วน |
-| `10000001` | `baht.Text(10000001)` | สิบล้านเอ็ดบาทถ้วน |
-| `1000000.01` | `baht.Text(1000000.01)` | หนึ่งล้านบาทหนึ่งสตางค์ |
-| `1.234` | `baht.Text(1.234)` | หนึ่งบาทยี่สิบสามสตางค์ |
+| `-100` | `bahttext.Words(-100)` | ลบหนึ่งร้อยบาทถ้วน |
+| `10000001` | `bahttext.Words(10000001)` | สิบล้านเอ็ดบาทถ้วน |
+| `1000000.01` | `bahttext.Words(1000000.01)` | หนึ่งล้านบาทหนึ่งสตางค์ |
+| `1.234` | `bahttext.Words(1.234)` | หนึ่งบาทยี่สิบสามสตางค์ |
 
 #### String Input Examples (ตัวอย่างการใส่ข้อมูลแบบ String)
 
 | Input | Code | Output (Thai Text) |
 |-------|------|-------------------|
-| `"1,000"` | `baht.TextFromString("1,000")` | หนึ่งพันบาทถ้วน |
-| `"1,234.56"` | `baht.TextFromString("1,234.56")` | หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์ |
-| `"1,234,567,890"` | `baht.TextFromString("1,234,567,890")` | หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน |
-| `" 123.45 "` | `baht.TextFromString(" 123.45 ")` | หนึ่งร้อยยี่สิบสามบาทสี่สิบห้าสตางค์ |
+| `"1,000"` | `bahttext.WordsFromString("1,000")` | หนึ่งพันบาทถ้วน |
+| `"1,234.56"` | `bahttext.WordsFromString("1,234.56")` | หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์ |
+| `"1,234,567,890"` | `bahttext.WordsFromString("1,234,567,890")` | หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน |
+| `" 123.45 "` | `bahttext.WordsFromString(" 123.45 ")` | หนึ่งร้อยยี่สิบสามบาทสี่สิบห้าสตางค์ |
 
 
 
@@ -117,46 +117,46 @@ go get github.com/anuchito/baht
 
 ```go
 money := 12_345.50
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หนึ่งหมื่นสองพันสามร้อยสี่สิบห้าบาทห้าสิบสตางค์
 
 money := 63_233.33
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หกหมื่นสามพันสองร้อยสามสิบสามบาทสามสิบสามสตางค์
 
 money := 1234567890
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 money := 1234567890123456789
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 
 // From String
 money := "1234567890"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 money := "1234567890.12"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
 
 money := "1234567890.123"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
 
 // From String Support comma
 money := "1,000"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันบาทถ้วน
 
 money := "1,234.56"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
 
 money := "1,234,567,890"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 ```
@@ -192,45 +192,45 @@ go get github.com/anuchito/baht
 
 ```go
 money := 12_345.50
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หนึ่งหมื่นสองพันสามร้อยสี่สิบห้าบาทห้าสิบสตางค์
 
 money := 63_233.33
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หกหมื่นสามพันสองร้อยสามสิบสามบาทสามสิบสามสตางค์
 
 money := 1234567890
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 money := 1234567890123456789
-fmt.Println(baht.Text(money))
+fmt.Println(bahttext.Words(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 
 // From String
 money := "1234567890"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 
 money := "1234567890.12"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
 
 money := "1234567890.123"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
 
 // From String Support comma
 money := "1,000"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันบาทถ้วน
 
 money := "1,234.56"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
 
 money := "1,234,567,890"
-fmt.Println(baht.TextFromString(money))
+fmt.Println(bahttext.WordsFromString(money))
 // Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 ```

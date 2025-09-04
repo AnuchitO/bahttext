@@ -1,4 +1,4 @@
-package baht
+package bahttext
 
 import "testing"
 
@@ -132,7 +132,7 @@ func TestBahtText(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := Text(tt.input)
+			result := Words(tt.input)
 			if result != tt.want {
 				t.Errorf("Text(%f) = %s, want %s", tt.input, result, tt.want)
 			}
@@ -174,7 +174,7 @@ func TestTextFromString(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result, err := TextFromString(tt.input)
+			result, err := WordsFromString(tt.input)
 
 			if tt.wantErr {
 				if err == nil {
@@ -209,7 +209,7 @@ func TestMustTextFromString(t *testing.T) {
 
 	for _, tt := range validTests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := MustTextFromString(tt.input)
+			result := MustWordsFromString(tt.input)
 			if result != tt.want {
 				t.Errorf("MustTextFromString(%q) = %s, want %s", tt.input, result, tt.want)
 			}
@@ -223,6 +223,6 @@ func TestMustTextFromString(t *testing.T) {
 				t.Errorf("MustTextFromString should panic on invalid input")
 			}
 		}()
-		MustTextFromString("invalid")
+		MustWordsFromString("invalid")
 	})
 }

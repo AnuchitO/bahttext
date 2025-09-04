@@ -1,3 +1,3 @@
-module github.com/anuchito/baht
+module github.com/anuchito/bahttext
 
 go 1.21

@@ -1,4 +1,4 @@
-package baht
+package bahttext
 
 import (
 	"fmt"
@@ -7,26 +7,33 @@ import (
 	"strings"
 )
 
+// TODO:
+// 1. change it into bahttext.Words()
+// 2. change it into bahttext.WordsFromString()
+// 3. change the repo to bahttext
+// 4. remove tags v1.0.0
+// 5. re tag it
+
 var (
 	unitWords  = []string{"", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"}
 	unitPlaces = []string{"", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน"}
 )
 
-// Text converts a float64 amount into its Thai word representation.
+// Words converts a float64 amount into its Thai word representation.
 // It returns the converted string
 // Don't be foolish and pass nonsensical values to this function such as NaN, Inf, or extremely large numbers.
 //
 // Example usage:
 //
-//	text := baht.Text(1234.56)
+//	text := baht.Words(1234.56)
 //	fmt.Println(text) // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
 //
 // The function supports:
-//   - Whole numbers: Text(1000) -> "หนึ่งพันบาทถ้วน"
-//   - Decimals (satang): Text(10.50) -> "สิบบาทห้าสิบสตางค์"
-//   - Large numbers: Text(1000000) -> "หนึ่งล้านบาทถ้วน"
-//   - Negative numbers: Text(-100) -> "ลบหนึ่งร้อยบาทถ้วน"
-func Text(money float64) string {
+//   - Whole numbers: Words(1000) -> "หนึ่งพันบาทถ้วน"
+//   - Decimals (satang): Words(10.50) -> "สิบบาทห้าสิบสตางค์"
+//   - Large numbers: Words(1000000) -> "หนึ่งล้านบาทถ้วน"
+//   - Negative numbers: Words(-100) -> "ลบหนึ่งร้อยบาทถ้วน"
+func Words(money float64) string {
 	minus := ""
 	if money < 0 {
 		minus = "ลบ"
@@ -113,46 +120,46 @@ func moneyToThaiWords(m uint64) string {
 	return result.String()
 }
 
-// TextFromString converts a string amount into its Thai word representation.
+// WordsFromString converts a string amount into its Thai word representation.
 // It parses the string as a float64 and then converts it to Thai words.
 // Returns the converted string and an error if the string cannot be parsed.
 //
 // Example usage:
 //
-//	text, err := baht.TextFromString("1234.56")
+//	text, err := baht.WordsFromString("1234.56")
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Println(text) // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
 //
-// The function supports the same number formats as Text():
-//   - Whole numbers: TextFromString("1000") -> "หนึ่งพันบาทถ้วน", nil
-//   - Decimals (satang): TextFromString("10.50") -> "สิบบาทห้าสิบสตางค์", nil
-//   - Large numbers: TextFromString("1000000") -> "หนึ่งล้านบาทถ้วน", nil
-//   - Negative numbers: TextFromString("-100") -> "ลบหนึ่งร้อยบาทถ้วน", nil
-//   - Comma-separated: TextFromString("1,000") -> "หนึ่งพันบาทถ้วน", nil
-//   - Comma-separated with decimals: TextFromString("1,234.56") -> "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์", nil
-//   - Comma-separate Large Nubmer: TextFromString("1,234,567,890") -> "หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน", nil
-func TextFromString(money string) (string, error) {
+// The function supports the same number formats as Words():
+//   - Whole numbers: WordsFromString("1000") -> "หนึ่งพันบาทถ้วน", nil
+//   - Decimals (satang): WordsFromString("10.50") -> "สิบบาทห้าสิบสตางค์", nil
+//   - Large numbers: WordsFromString("1000000") -> "หนึ่งล้านบาทถ้วน", nil
+//   - Negative numbers: WordsFromString("-100") -> "ลบหนึ่งร้อยบาทถ้วน", nil
+//   - Comma-separated: WordsFromString("1,000") -> "หนึ่งพันบาทถ้วน", nil
+//   - Comma-separated with decimals: WordsFromString("1,234.56") -> "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์", nil
+//   - Comma-separated Large Number: WordsFromString("1,234,567,890") -> "หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน", nil
+func WordsFromString(money string) (string, error) {
 	// Remove commas and trim whitespace
 	cleanMoney := strings.ReplaceAll(strings.TrimSpace(money), ",", "")
 	amount, err := strconv.ParseFloat(cleanMoney, 64)
 	if err != nil {
 		return "", fmt.Errorf("invalid number format: %s", money)
 	}
-	return Text(amount), nil
+	return Words(amount), nil
 }
 
-// MustTextFromString is like TextFromString but panics if the string cannot be parsed.
+// MustWordsFromString is like TextFromString but panics if the string cannot be parsed.
 // Use this when you are certain the string is a valid number.
 //
 // Example usage:
 //
 //	money := fmt.Sprintf("%.2f", 1234.56)
-//	text := baht.MustTextFromString(money)
+//	text := baht.MustWordsFromString(money)
 //	fmt.Println(text) // Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
-func MustTextFromString(money string) string {
-	text, err := TextFromString(money)
+func MustWordsFromString(money string) string {
+	text, err := WordsFromString(money)
 	if err != nil {
 		panic(err)
 	}

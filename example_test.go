@@ -1,25 +1,25 @@
-package baht_test
+package bahttext_test
 
 import (
 	"fmt"
 
-	"github.com/anuchito/baht"
+	"github.com/anuchito/bahttext"
 )
 
-// ExampleText demonstrates basic usage of the Text function
-func ExampleText() {
-	text := baht.Text(1234)
-	fmt.Println(text)
+// ExampleWords demonstrates basic usage of the Words function
+func ExampleWords() {
+	Words := bahttext.Words(1234)
+	fmt.Println(Words)
 	// Output: หนึ่งพันสองร้อยสามสิบสี่บาทถ้วน
 }
 
-// ExampleText_decimals demonstrates converting amounts with satang (decimal places)
-func ExampleText_decimals() {
+// ExampleWords_decimals demonstrates converting amounts with satang (decimal places)
+func ExampleWords_decimals() {
 	amounts := []float64{1.25, 10.50, 100.75}
 
 	for _, amount := range amounts {
-		text := baht.Text(amount)
-		fmt.Printf("%.2f -> %s\n", amount, text)
+		Words := bahttext.Words(amount)
+		fmt.Printf("%.2f -> %s\n", amount, Words)
 	}
 	// Output:
 	// 1.25 -> หนึ่งบาทยี่สิบห้าสตางค์
@@ -27,57 +27,57 @@ func ExampleText_decimals() {
 	// 100.75 -> หนึ่งร้อยบาทเจ็ดสิบห้าสตางค์
 }
 
-// ExampleText_largeNumbers demonstrates converting large amounts
-func ExampleText_largeNumbers() {
+// ExampleWords_largeNumbers demonstrates converting large amounts
+func ExampleWords_largeNumbers() {
 	amounts := []float64{1_000_000, 1_234_567_890}
 
 	for _, amount := range amounts {
-		text := baht.Text(amount)
-		fmt.Printf("%.0f -> %s\n", amount, text)
+		Words := bahttext.Words(amount)
+		fmt.Printf("%.0f -> %s\n", amount, Words)
 	}
 	// Output:
 	// 1000000 -> หนึ่งล้านบาทถ้วน
 	// 1234567890 -> หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
 }
 
-func ExampleText_billion() {
-	text := baht.Text(1_000_000_000)
-	fmt.Println(text)
+func ExampleWords_billion() {
+	Words := bahttext.Words(1_000_000_000)
+	fmt.Println(Words)
 	// Output: หนึ่งพันล้านบาทถ้วน
 }
 
-func ExampleText_multiBillion() {
-	text := baht.Text(10_000_000_000)
-	fmt.Println(text)
+func ExampleWords_multiBillion() {
+	Words := bahttext.Words(10_000_000_000)
+	fmt.Println(Words)
 	// Output: หนึ่งหมื่นล้านบาทถ้วน
 }
 
-func ExampleText_trillion() {
-	text := baht.Text(1_000_000_000_000)
-	fmt.Println(text)
+func ExampleWords_trillion() {
+	Words := bahttext.Words(1_000_000_000_000)
+	fmt.Println(Words)
 	// Output: หนึ่งล้านล้านบาทถ้วน
 }
 
-func ExampleText_multiTrillion() {
-	text := baht.Text(10_000_000_000_000)
-	fmt.Println(text)
+func ExampleWords_multiTrillion() {
+	Words := bahttext.Words(10_000_000_000_000)
+	fmt.Println(Words)
 	// Output: สิบล้านล้านบาทถ้วน
 }
 
-// ExampleText_negative demonstrates converting negative amounts
-func ExampleText_negative() {
-	text := baht.Text(-100.50)
-	fmt.Println(text)
+// ExampleWords_negative demonstrates converting negative amounts
+func ExampleWords_negative() {
+	Words := bahttext.Words(-100.50)
+	fmt.Println(Words)
 	// Output: ลบหนึ่งร้อยบาทห้าสิบสตางค์
 }
 
-// ExampleText_edgeCases demonstrates edge cases and special number patterns
-func ExampleText_edgeCases() {
+// ExampleWords_edgeCases demonstrates edge cases and special number patterns
+func ExampleWords_edgeCases() {
 	amounts := []float64{0, 11, 21, 111, 1001}
 
 	for _, amount := range amounts {
-		text := baht.Text(amount)
-		fmt.Printf("%.0f -> %s\n", amount, text)
+		Words := bahttext.Words(amount)
+		fmt.Printf("%.0f -> %s\n", amount, Words)
 	}
 	// Output:
 	// 0 -> ศูนย์บาทถ้วน
@@ -87,28 +87,28 @@ func ExampleText_edgeCases() {
 	// 1001 -> หนึ่งพันเอ็ดบาทถ้วน
 }
 
-// ExampleTextFromString demonstrates basic usage of the TextFromString function
-func ExampleTextFromString() {
-	text, err := baht.TextFromString("1234.56")
+// ExampleWordsFromString demonstrates basic usage of the WordsFromString function
+func ExampleWordsFromString() {
+	Words, err := bahttext.WordsFromString("1234.56")
 	if err != nil {
 		fmt.Printf("Error: %v\n", err)
 		return
 	}
-	fmt.Println(text)
+	fmt.Println(Words)
 	// Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
 }
 
-// ExampleTextFromString_various demonstrates converting various string amounts
-func ExampleTextFromString_various() {
+// ExampleWordsFromString_various demonstrates converting various string amounts
+func ExampleWordsFromString_various() {
 	amounts := []string{"0", "1000", "1234.56", "-100.50"}
 
 	for _, amount := range amounts {
-		text, err := baht.TextFromString(amount)
+		Words, err := bahttext.WordsFromString(amount)
 		if err != nil {
 			fmt.Printf("%s -> Error: %v\n", amount, err)
 			continue
 		}
-		fmt.Printf("%s -> %s\n", amount, text)
+		fmt.Printf("%s -> %s\n", amount, Words)
 	}
 	// Output:
 	// 0 -> ศูนย์บาทถ้วน
@@ -117,16 +117,16 @@ func ExampleTextFromString_various() {
 	// -100.50 -> ลบหนึ่งร้อยบาทห้าสิบสตางค์
 }
 
-// ExampleTextFromString_errorHandling demonstrates error handling
-func ExampleTextFromString_errorHandling() {
+// ExampleWordsFromString_errorHandling demonstrates error handling
+func ExampleWordsFromString_errorHandling() {
 	invalidAmounts := []string{"abc", "12.34.56", "", "12@34"}
 
 	for _, amount := range invalidAmounts {
-		text, err := baht.TextFromString(amount)
+		Words, err := bahttext.WordsFromString(amount)
 		if err != nil {
 			fmt.Printf("%q -> Error: invalid input\n", amount)
 		} else {
-			fmt.Printf("%q -> %s\n", amount, text)
+			fmt.Printf("%q -> %s\n", amount, Words)
 		}
 	}
 	// Output:
@@ -136,10 +136,10 @@ func ExampleTextFromString_errorHandling() {
 	// "12@34" -> Error: invalid input
 }
 
-// ExampleMustTextFromString demonstrates basic usage of the MustTextFromString function
-func ExampleMustTextFromString() {
+// ExampleMustWordsFromString demonstrates basic usage of the MustWordsFromString function
+func ExampleMustWordsFromString() {
 	money := fmt.Sprintf("%.2f", 1234.56)
-	text := baht.MustTextFromString(money)
-	fmt.Println(text)
+	Words := bahttext.MustWordsFromString(money)
+	fmt.Println(Words)
 	// Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
 }
