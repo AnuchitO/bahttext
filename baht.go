@@ -130,8 +130,13 @@ func moneyToThaiWords(m uint64) string {
 //   - Decimals (satang): TextFromString("10.50") -> "สิบบาทห้าสิบสตางค์", nil
 //   - Large numbers: TextFromString("1000000") -> "หนึ่งล้านบาทถ้วน", nil
 //   - Negative numbers: TextFromString("-100") -> "ลบหนึ่งร้อยบาทถ้วน", nil
+//   - Comma-separated: TextFromString("1,000") -> "หนึ่งพันบาทถ้วน", nil
+//   - Comma-separated with decimals: TextFromString("1,234.56") -> "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์", nil
+//   - Comma-separate Large Nubmer: TextFromString("1,234,567,890") -> "หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน", nil
 func TextFromString(money string) (string, error) {
-	amount, err := strconv.ParseFloat(strings.TrimSpace(money), 64)
+	// Remove commas and trim whitespace
+	cleanMoney := strings.ReplaceAll(strings.TrimSpace(money), ",", "")
+	amount, err := strconv.ParseFloat(cleanMoney, 64)
 	if err != nil {
 		return "", fmt.Errorf("invalid number format: %s", money)
 	}

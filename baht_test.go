@@ -155,7 +155,15 @@ func TestTextFromString(t *testing.T) {
 		{"large-number-string", "1000000", "หนึ่งล้านบาทถ้วน", false},
 		{"with-spaces", " 123.45 ", "หนึ่งร้อยยี่สิบสามบาทสี่สิบห้าสตางค์", false},
 		{"scientific-notation", "1e3", "หนึ่งพันบาทถ้วน", false},
-		
+
+		// Comma-separated inputs
+		{"comma-thousands", "1,000", "หนึ่งพันบาทถ้วน", false},
+		{"comma-with-decimal", "1,234.56", "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์", false},
+		{"comma-large-number", "1,234,567", "หนึ่งล้านสองแสนสามหมื่นสี่พันห้าร้อยหกสิบเจ็ดบาทถ้วน", false},
+		{"comma-very-large", "1,234,567,890", "หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน", false},
+		{"comma-negative", "-1,000", "ลบหนึ่งพันบาทถ้วน", false},
+		{"comma-with-spaces", " 1,234.56 ", "หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์", false},
+
 		// Invalid string inputs
 		{"empty-string", "", "", true},
 		{"invalid-text", "abc", "", true},
@@ -167,19 +175,19 @@ func TestTextFromString(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			result, err := TextFromString(tt.input)
-			
+
 			if tt.wantErr {
 				if err == nil {
 					t.Errorf("TextFromString(%q) expected error, got nil", tt.input)
 				}
 				return
 			}
-			
+
 			if err != nil {
 				t.Errorf("TextFromString(%q) unexpected error: %v", tt.input, err)
 				return
 			}
-			
+
 			if result != tt.want {
 				t.Errorf("TextFromString(%q) = %s, want %s", tt.input, result, tt.want)
 			}
