@@ -29,7 +29,7 @@ func ExampleText_decimals() {
 
 // ExampleText_largeNumbers demonstrates converting large amounts
 func ExampleText_largeNumbers() {
-	amounts := []float64{1000000, 1234567890}
+	amounts := []float64{1_000_000, 1_234_567_890}
 
 	for _, amount := range amounts {
 		text := baht.Text(amount)
@@ -41,25 +41,25 @@ func ExampleText_largeNumbers() {
 }
 
 func ExampleText_billion() {
-	text := baht.Text(1000000000)
+	text := baht.Text(1_000_000_000)
 	fmt.Println(text)
 	// Output: หนึ่งพันล้านบาทถ้วน
 }
 
 func ExampleText_multiBillion() {
-	text := baht.Text(10000000000)
+	text := baht.Text(10_000_000_000)
 	fmt.Println(text)
 	// Output: หนึ่งหมื่นล้านบาทถ้วน
 }
 
 func ExampleText_trillion() {
-	text := baht.Text(1000000000000)
+	text := baht.Text(1_000_000_000_000)
 	fmt.Println(text)
 	// Output: หนึ่งล้านล้านบาทถ้วน
 }
 
-func ExampleText_quadrillion() {
-	text := baht.Text(10000000000000)
+func ExampleText_multiTrillion() {
+	text := baht.Text(10_000_000_000_000)
 	fmt.Println(text)
 	// Output: สิบล้านล้านบาทถ้วน
 }
