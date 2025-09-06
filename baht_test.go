@@ -2,7 +2,7 @@ package bahttext
 
 import "testing"
 
-func TestBahtText(t *testing.T) {
+func TestBahtWords(t *testing.T) {
 	tests := []struct {
 		name  string
 		input float64
@@ -143,7 +143,7 @@ func TestBahtText(t *testing.T) {
 	}
 }
 
-func TestTextFromString(t *testing.T) {
+func TestWordsFromString(t *testing.T) {
 	tests := []struct {
 		name    string
 		input   string
@@ -198,7 +198,7 @@ func TestTextFromString(t *testing.T) {
 	}
 }
 
-func TestMustTextFromString(t *testing.T) {
+func TestMustWordsFromString(t *testing.T) {
 	// Test valid inputs
 	validTests := []struct {
 		name  string
