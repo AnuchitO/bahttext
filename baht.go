@@ -32,9 +32,12 @@ func Words(money float64) string {
 		minus = "ลบ"
 	}
 
-	preciseAmount := math.Round(math.Abs(money)*100) / 100
-	wholeBaht := math.Trunc(preciseAmount)
-	satang := math.Round((preciseAmount - wholeBaht) * 100)
+	// Convert to total satang first to avoid floating-point issues
+	totalSatang := uint64(math.Round(math.Abs(money) * 100))
+
+	// Use integer division and modulo to separate baht and satang
+	wholeBaht := totalSatang / 100
+	satang := totalSatang % 100
 
 	bahtText := moneyToThaiWords(uint64(wholeBaht))
 

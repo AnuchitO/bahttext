@@ -15,7 +15,7 @@ cover:
 # Run fuzzy tests
 .PHONY: fuzz
 fuzz:
-	@echo "Running fuzzy tests..."
+	@echo "Running fuzz tests..."
 	go test -fuzz=FuzzWords$$ -fuzztime=10s
 	go test -fuzz=FuzzWordsFromString$$ -fuzztime=10s
 	go test -fuzz=FuzzConsistency$$ -fuzztime=10s
