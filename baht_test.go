@@ -107,6 +107,10 @@ func TestBahtWords(t *testing.T) {
 		{"very-large-number", 1_234_567_890_123, "หนึ่งล้านสองแสนสามหมื่นสี่พันห้าร้อยหกสิบเจ็ดล้านแปดแสนเก้าหมื่นหนึ่งร้อยยี่สิบสามบาทถ้วน"},
 
 		// Floating-Point Numbers (with Satang)
+		{"zero-baht-exact", 0.00, "ศูนย์บาทถ้วน"},
+		{"zero-baht-twenty-five-satang", 0.25, "ศูนย์บาทยี่สิบห้าสตางค์"},
+		{"zero-baht-fifty-satang", 0.50, "ศูนย์บาทห้าสิบสตางค์"},
+		{"zero-baht-seventy-five-satang", 0.75, "ศูนย์บาทเจ็ดสิบห้าสตางค์"},
 		{"five-baht-exact", 5.00, "ห้าบาทถ้วน"},
 		{"five-baht-twenty-five-satang", 5.25, "ห้าบาทยี่สิบห้าสตางค์"},
 		{"five-baht-fifty-satang", 5.50, "ห้าบาทห้าสิบสตางค์"},
