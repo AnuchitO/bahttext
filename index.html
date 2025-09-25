@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>THB-to-Text: Thai Baht to Word Conversion Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.4.0/github-markdown.min.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 45px;
+            background-color: #fff;
+        }
+        img.badge {
+            height: 20px;
+            vertical-align: middle;
+        }
+        img.large-badge {
+            height: 140px;
+            margin-right: 10px;
+        }
+        pre code {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body class="markdown-body">
+<h1>THB-to-Text: Thai Baht to Word Conversion Library</h1>
+
+<p><a href="https://codecov.io/github/AnuchitO/bahttext"><img src="https://codecov.io/github/AnuchitO/bahttext/graph/badge.svg?token=7Q7FAJNUS1" alt="codecov" /></a> <a href="https://github.com/anuchito/bahttext/actions/workflows/ci.yml"><img src="https://github.com/anuchito/bahttext/actions/workflows/ci.yml/badge.svg" alt="Go" /></a> <a href="https://pkg.go.dev/github.com/anuchito/bahttext"><img src="https://pkg.go.dev/badge/github.com/anuchito/bahttext.svg" alt="Go Reference" /></a></p>
+
+<p><img src=".badges/trustworthy.png" alt="Trustworthy" height="140"> <img src=".badges/production-proved.png" alt="Trustworthy" height="140"></p>
+
+<h2>🇹🇭 THB-to-Text</h2>
+
+<p><strong>THB-to-Text</strong> คือไลบรารีที่สร้างขึ้นเพื่อการแปลงตัวเลขจำนวนเงินบาทไทยให้เป็นข้อความภาษาไทยอย่างถูกต้องและแม่นยำ โดยเลียนแบบฟังก์ชัน <code>BAHTTEXT()</code> ของ <a href="https://support.microsoft.com/en-us/office/bahttext-function-5ba4d0b4-abd3-4325-8d22-7a92d59aab9c">Microsoft Excel</a> ซึ่งเป็นที่คุ้นเคยในวงการบัญชีและการเงิน</p>
+
+<p>โค้ดที่มีคุณภาพสูง ทำงานได้อย่างรวดเร็ว ปลอดภัย และใช้งานง่ายที่สุดเท่าที่จะเป็นไปได้ สามารถนำไปใช้ได้จริงในระดับ<strong>โปรดักชัน</strong>ได้จริง  <strong>(Production Ready)</strong></p>
+
+<h3>ตารางตัวอย่างการใช้งาน / Examples Table</h3>
+
+<h4>Basic Numbers (จำนวนพื้นฐาน)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>0</code></td>
+  <td><code>bahttext.Words(0)</code></td>
+  <td>ศูนย์บาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1</code></td>
+  <td><code>bahttext.Words(1)</code></td>
+  <td>หนึ่งบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>2</code></td>
+  <td><code>bahttext.Words(2)</code></td>
+  <td>สองบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>5</code></td>
+  <td><code>bahttext.Words(5)</code></td>
+  <td>ห้าบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>9</code></td>
+  <td><code>bahttext.Words(9)</code></td>
+  <td>เก้าบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>10</code></td>
+  <td><code>bahttext.Words(10)</code></td>
+  <td>สิบบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>11</code></td>
+  <td><code>bahttext.Words(11)</code></td>
+  <td>สิบเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>20</code></td>
+  <td><code>bahttext.Words(20)</code></td>
+  <td>ยี่สิบบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>21</code></td>
+  <td><code>bahttext.Words(21)</code></td>
+  <td>ยี่สิบเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>31</code></td>
+  <td><code>bahttext.Words(31)</code></td>
+  <td>สามสิบเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>55</code></td>
+  <td><code>bahttext.Words(55)</code></td>
+  <td>ห้าสิบห้าบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>99</code></td>
+  <td><code>bahttext.Words(99)</code></td>
+  <td>เก้าสิบเก้าบาทถ้วน</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Hundreds (ร้อย)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>100</code></td>
+  <td><code>bahttext.Words(100)</code></td>
+  <td>หนึ่งร้อยบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>101</code></td>
+  <td><code>bahttext.Words(101)</code></td>
+  <td>หนึ่งร้อยเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>111</code></td>
+  <td><code>bahttext.Words(111)</code></td>
+  <td>หนึ่งร้อยสิบเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>130</code></td>
+  <td><code>bahttext.Words(120)</code></td>
+  <td>หนึ่งร้อยยี่สิบบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>221</code></td>
+  <td><code>bahttext.Words(221)</code></td>
+  <td>สองร้อยยี่สิบเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>505</code></td>
+  <td><code>bahttext.Words(505)</code></td>
+  <td>ห้าร้อยห้าบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>999</code></td>
+  <td><code>bahttext.Words(999)</code></td>
+  <td>เก้าร้อยเก้าสิบเก้าบาทถ้วน</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Thousands (พัน)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>1000</code></td>
+  <td><code>bahttext.Words(1000)</code></td>
+  <td>หนึ่งพันบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1001</code></td>
+  <td><code>bahttext.Words(1001)</code></td>
+  <td>หนึ่งพันเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1111</code></td>
+  <td><code>bahttext.Words(1111)</code></td>
+  <td>หนึ่งพันหนึ่งร้อยสิบเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>2500</code></td>
+  <td><code>bahttext.Words(2500)</code></td>
+  <td>สองพันห้าร้อยบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>9999</code></td>
+  <td><code>bahttext.Words(9999)</code></td>
+  <td>เก้าพันเก้าร้อยเก้าสิบเก้าบาทถ้วน</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Large Numbers (จำนวนใหญ่)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>10000</code></td>
+  <td><code>bahttext.Words(10000)</code></td>
+  <td>หนึ่งหมื่นบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>100000</code></td>
+  <td><code>bahttext.Words(100000)</code></td>
+  <td>หนึ่งแสนบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>123456</code></td>
+  <td><code>bahttext.Words(123456)</code></td>
+  <td>หนึ่งแสนสองหมื่นสามพันสี่ร้อยห้าสิบหกบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1000000</code></td>
+  <td><code>bahttext.Words(1000000)</code></td>
+  <td>หนึ่งล้านบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>10000000</code></td>
+  <td><code>bahttext.Words(10000000)</code></td>
+  <td>สิบล้านบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>100000000</code></td>
+  <td><code>bahttext.Words(100000000)</code></td>
+  <td>หนึ่งร้อยล้านบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1000000000</code></td>
+  <td><code>bahttext.Words(1000000000)</code></td>
+  <td>หนึ่งพันล้านบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1000000000000</code></td>
+  <td><code>bahttext.Words(1000000000000)</code></td>
+  <td>หนึ่งล้านล้านบาทถ้วน</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Decimals (ทศนิยม - สตางค์)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>1.01</code></td>
+  <td><code>bahttext.Words(1.01)</code></td>
+  <td>หนึ่งบาทหนึ่งสตางค์</td>
+</tr>
+<tr>
+  <td><code>1.25</code></td>
+  <td><code>bahttext.Words(1.25)</code></td>
+  <td>หนึ่งบาทยี่สิบห้าสตางค์</td>
+</tr>
+<tr>
+  <td><code>5.50</code></td>
+  <td><code>bahttext.Words(5.50)</code></td>
+  <td>ห้าบาทห้าสิบสตางค์</td>
+</tr>
+<tr>
+  <td><code>10.50</code></td>
+  <td><code>bahttext.Words(10.50)</code></td>
+  <td>สิบบาทห้าสิบสตางค์</td>
+</tr>
+<tr>
+  <td><code>100.75</code></td>
+  <td><code>bahttext.Words(100.75)</code></td>
+  <td>หนึ่งร้อยบาทเจ็ดสิบห้าสตางค์</td>
+</tr>
+<tr>
+  <td><code>1234.56</code></td>
+  <td><code>bahttext.Words(1234.56)</code></td>
+  <td>หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์</td>
+</tr>
+<tr>
+  <td><code>9012.34</code></td>
+  <td><code>bahttext.Words(9012.34)</code></td>
+  <td>เก้าพันสิบสองบาทสามสิบสี่สตางค์</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Special Cases (กรณีพิเศษ)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>-100</code></td>
+  <td><code>bahttext.Words(-100)</code></td>
+  <td>ลบหนึ่งร้อยบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>10000001</code></td>
+  <td><code>bahttext.Words(10000001)</code></td>
+  <td>สิบล้านเอ็ดบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>1000000.01</code></td>
+  <td><code>bahttext.Words(1000000.01)</code></td>
+  <td>หนึ่งล้านบาทหนึ่งสตางค์</td>
+</tr>
+<tr>
+  <td><code>1.234</code></td>
+  <td><code>bahttext.Words(1.234)</code></td>
+  <td>หนึ่งบาทยี่สิบสามสตางค์</td>
+</tr>
+</tbody>
+</table>
+
+<h4>String Input Examples (ตัวอย่างการใส่ข้อมูลแบบ String)</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Input</th>
+  <th>Code</th>
+  <th>Output (Thai Text)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>"1,000"</code></td>
+  <td><code>bahttext.WordsFromString("1,000")</code></td>
+  <td>หนึ่งพันบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>"1,234.56"</code></td>
+  <td><code>bahttext.WordsFromString("1,234.56")</code></td>
+  <td>หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์</td>
+</tr>
+<tr>
+  <td><code>"1,234,567,890"</code></td>
+  <td><code>bahttext.WordsFromString("1,234,567,890")</code></td>
+  <td>หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน</td>
+</tr>
+<tr>
+  <td><code>" 123.45 "</code></td>
+  <td><code>bahttext.WordsFromString(" 123.45 ")</code></td>
+  <td>หนึ่งร้อยยี่สิบสามบาทสี่สิบห้าสตางค์</td>
+</tr>
+</tbody>
+</table>
+
+<h3>จุดประสงค์</h3>
+
+<p>การจัดการข้อมูลทางการเงินที่ละเอียดอ่อนอย่างถูกต้องและแม่นยำคือสิ่งสำคัญสูงสุด ไลบรารีนี้ถูกสร้างขึ้นเพื่อเป็นเครื่องมือที่คุณวางใจได้ ไม่ใช่แค่การแปลงตัวเลขเป็นข้อความ แต่เป็นการส่งมอบความมั่นใจว่าทุกธุรกรรมและทุกรายงานจะเนียนสวย</p>
+
+<p>เร็ว, แม่นยำ, และ สามารถนำไปใช้ได้จริงในระดับ<strong>โปรดักชัน</strong>  ไลบรารีนี้ถูกสร้างอย่างพิถีพิถันเพื่อตอบโจทย์เหล่านั้น ทำให้คุณมีเครื่องมือที่เชื่อถือได้จริงในมือ และสามารถมุ่งเน้นไปที่การสร้างสรรค์นวัตกรรมใหม่ๆ ให้กับแอปพลิเคชันของคุณได้อย่างเต็มที่</p>
+
+<ul>
+<li><strong>ความถูกต้องและแม่นยำสูง:</strong> ไลบรารีนี้ได้รับการพัฒนาโดยคำนึงถึงทุกกฎเกณฑ์ทางภาษาและตัวเลขของไทย รวมถึงกรณีพิเศษ เช่น <code>ยี่สิบ</code>, <code>เอ็ด</code>, และการออกเสียงจำนวนเงินที่ถูกต้อง</li>
+<li><strong>โค้ดที่เชื่อถือได้:</strong> เหมาะสำหรับการใช้งานในระบบที่ต้องการความมั่นใจและเชื่อถือได้ ปลอดภัย และง่ายต่อการบำรุงรักษา</li>
+<li><strong>ผ่านการทดสอบ รีวิวจากผู้เชี่ยวชาญ:</strong> ไลบรารีนี้ได้รับการทดสอบและรีวิวจากผู้เชี่ยวชาญและมีประสบการณ์ในการใช้งานไลบรารี</li>
+<li><strong>รองรับจำนวน ล้าน ล้าน ล้าน:</strong> ไลบรารีนี้รองรับการแปลงตัวเลขจำนวนเงินที่มี ร้อยล้าน พันล้าน หมื่นล้าน แสนล้าน ล้านล้าน</li>
+<li><strong>ใช้งานง่าย:</strong> ด้วย API ที่เรียบง่ายและเอกสารประกอบที่ชัดเจน คุณสามารถนำไลบรารีนี้ไปใช้ในโปรเจกต์ของคุณได้ภายในไม่กี่นาที</li>
+<li><strong>Open-Source และได้รับการสนับสนุนจากชุมชน:</strong> โปรเจกต์นี้เปิดให้ทุกคนมีส่วนร่วมในการพัฒนาและปรับปรุงอย่างต่อเนื่อง ทำให้มั่นใจได้ว่าจะเป็นเครื่องมือที่ทันสมัยและเชื่อถือได้ในระยะยาว</li>
+</ul>
+
+<h3>ติดตั้ง</h3>
+
+<pre><code># ตัวอย่างสำหรับภาษา Go
+go get github.com/anuchito/baht
+</code></pre>
+
+<h3>ตัวอย่างการใช้งาน</h3>
+
+<pre><code>money := 12_345.50
+fmt.Println(bahttext.Words(money))
+// Output: หนึ่งหมื่นสองพันสามร้อยสี่สิบห้าบาทห้าสิบสตางค์
+
+money := 63_233.33
+fmt.Println(bahttext.Words(money))
+// Output: หกหมื่นสามพันสองร้อยสามสิบสามบาทสามสิบสามสตางค์
+
+money := 1234567890
+fmt.Println(bahttext.Words(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+money := 1234567890123456789
+fmt.Println(bahttext.Words(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+
+// From String
+money := "1234567890"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+money := "1234567890.12"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
+
+money := "1234567890.123"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
+
+// From String Support comma
+money := "1,000"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันบาทถ้วน
+
+money := "1,234.56"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+
+money := "1,234,567,890"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+</code></pre>
+
+<hr />
+
+<h2>🇺🇸 THB-to-Text</h2>
+
+<p><strong>THB-to-Text</strong> is a library created to solve the problem of converting Thai Baht currency numbers into Thai text accurately and precisely. It mimics the <code>BAHTTEXT()</code> function from <a href="https://support.microsoft.com/en-us/office/bahttext-function-5ba4d0b4-abd3-4325-8d22-7a92d59aab9c">Microsoft Excel</a>, which is familiar in accounting and finance.</p>
+
+<p>We are committed to providing high-quality code that works fast, securely, and is as easy to use as possible. It can be used in <strong>production</strong> environments.</p>
+
+<h3>Purpose</h3>
+
+<p>Handling sensitive financial data accurately and precisely is of utmost importance. This library was created to be a tool you can trust. It's not just about converting numbers to text, but delivering confidence that every transaction and every report will be error-free.</p>
+
+<p>Fast, accurate, and ready for <strong>production</strong> use - this library was meticulously built to meet those needs. It gives you a truly reliable tool in hand, allowing you to focus fully on creating new innovations for your applications.</p>
+
+<ul>
+<li><strong>High Accuracy and Precision:</strong> This library is developed with consideration for all Thai language and numerical rules, including special cases such as <code>ยี่สิบ</code>, <code>เอ็ด</code>, and correct pronunciation of currency amounts.</li>
+<li><strong>Reliable Code:</strong> Suitable for use in systems that require confidence and reliability, security, and ease of maintenance.</li>
+<li><strong>Tested and Reviewed by Experts:</strong> This library has been tested and reviewed by experts with experience in library usage.</li>
+<li><strong>Supports Millions Upon Millions:</strong> This library supports conversion of currency numbers with hundreds of millions, billions, ten billions, hundred billions, trillions.</li>
+<li><strong>Easy to Use:</strong> With a simple API and clear documentation, you can integrate this library into your project within minutes.</li>
+<li><strong>Open-Source and Community-Supported:</strong> This project is open for everyone to participate in continuous development and improvement, ensuring it will be a modern and reliable tool in the long term.</li>
+</ul>
+
+<h3>Installation</h3>
+
+<pre><code># Example for Go language
+go get github.com/anuchito/baht
+</code></pre>
+
+<h3>Usage Examples</h3>
+
+<pre><code>money := 12_345.50
+fmt.Println(bahttext.Words(money))
+// Output: หนึ่งหมื่นสองพันสามร้อยสี่สิบห้าบาทห้าสิบสตางค์
+
+money := 63_233.33
+fmt.Println(bahttext.Words(money))
+// Output: หกหมื่นสามพันสองร้อยสามสิบสามบาทสามสิบสามสตางค์
+
+money := 1234567890
+fmt.Println(bahttext.Words(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+money := 1234567890123456789
+fmt.Println(bahttext.Words(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+
+// From String
+money := "1234567890"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+
+money := "1234567890.12"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
+
+money := "1234567890.123"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทสิบสองสตางค์
+
+// From String Support comma
+money := "1,000"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันบาทถ้วน
+
+money := "1,234.56"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่บาทห้าสิบหกสตางค์
+
+money := "1,234,567,890"
+fmt.Println(bahttext.WordsFromString(money))
+// Output: หนึ่งพันสองร้อยสามสิบสี่ล้านห้าแสนหกหมื่นเจ็ดพันแปดร้อยเก้าสิบบาทถ้วน
+</code></pre>
+
+</body>
+</html>
